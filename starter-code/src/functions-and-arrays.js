@@ -30,11 +30,12 @@ function sumArray(arr) {
   let sum = 0;
   if (arr.length === 0) {
     return 0
-  } else if (arr.length === 1) {
-    return arr[0]
-  } else {
-    numbers.forEach(num => sum += num)
   }
+  if (arr.length === 1) {
+    return arr[0]
+  }
+   arr.forEach(num => sum += num)
+
   return sum
 }
 
@@ -178,12 +179,15 @@ const matrix = [
 ];
 
 function greatestProduct(matrix) {
-    let arrMultiplication = [];
+    let horizontalMult = [];
+    let diagonalMult =[];
     let largestNum = 0;
     for (let i = 0; i < matrix.length; i++) {
       for (let j = 0; j < matrix[i].length; j++) {
-        arrMultiplication.push(matrix[i][j] * matrix[i][j + 1] * matrix[i][j + 2] * matrix[i][j + 3])
-        arrMultiplication.forEach(function(elem) {
+        diagonalMult.push(matrix[i][i] * matrix[i + 1][i + 1] * matrix[i + 2][i + 2] * matrix[i + 3][i + 3]);
+        console.log(diagonalMult)
+        horizontalMult.push(matrix[i][j] * matrix[i][j + 1] * matrix[i][j + 2] * matrix[i][j + 3])
+        horizontalMult.forEach(function(elem) {
           if (elem > largestNum) {
             largestNum = elem
           }
