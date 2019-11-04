@@ -178,21 +178,53 @@ const matrix = [
   [1, 70, 54, 71, 83, 51, 54, 69, 16, 92, 33, 48, 61, 43, 52, 1, 89, 19, 67, 48]
 ];
 
-function greatestProduct(matrix) {
-    let horizontalMult = [];
-    let diagonalMult =[];
-    let largestNum = 0;
-    for (let i = 0; i < matrix.length; i++) {
-      for (let j = 0; j < matrix[i].length; j++) {
-        diagonalMult.push(matrix[i][i] * matrix[i + 1][i + 1] * matrix[i + 2][i + 2] * matrix[i + 3][i + 3]);
-        console.log(diagonalMult)
-        horizontalMult.push(matrix[i][j] * matrix[i][j + 1] * matrix[i][j + 2] * matrix[i][j + 3])
-        horizontalMult.forEach(function(elem) {
-          if (elem > largestNum) {
+// function greatestProduct(matrix) {
+//     let horizontalMult = [];
+//     let diagonalMult =[];
+//     let largestNum = 0;
+//     for (let i = 0; i < matrix.length; i++) {
+//       for (let j = 0; j < matrix[i].length; j++) {
+//         diagonalMult.push(matrix[i][i] * matrix[i + 1][i + 1] * matrix[i + 2][i + 2] * matrix[i + 3][i + 3]);
+//         console.log(diagonalMult)
+//         horizontalMult.push(matrix[i][j] * matrix[i][j + 1] * matrix[i][j + 2] * matrix[i][j + 3])
+//         horizontalMult.forEach(function(elem) {
+//           if (elem > largestNum) {
+//             largestNum = elem
+//           }
+//         })
+//       }
+//     }
+//     console.log(largestNum)
+//   }
+
+function linealProduct(arr) {
+  let largestNum = 0
+  arr.map((elem) => {
+          if(elem > largestNum) {
             largestNum = elem
           }
         })
+        return largestNum
+}
+
+function horizontalLine(obj) {
+  let horizontalMult = [];
+  let horizontal = 0;
+  for (let i = 0; i < obj.length; i++) {
+      for (let j = 0; j < (obj[i].length -3); j++) {
+        horizontalMult.push(obj[i][j] * obj[i][j + 1] * obj[i][j + 2] * obj[i][j + 3])
+        horizontal = linealProduct(horizontalMult)
       }
-    }
-    console.log(largestNum)
+}
+return horizontal
+}
+
+function diagonalLine(obj) {
+  let diagonalMult = 1;
+  let vertical = 0
+  for (let i = 0; i < obj.length; i++) {
+        diagonalMult *= obj[i][i]
   }
+  return diagonalMult
+  }
+
